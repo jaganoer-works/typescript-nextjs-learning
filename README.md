@@ -102,6 +102,30 @@ PHP/Laravelバックエンド開発者からフルスタック開発者へのキ
 
 ## リポジトリ構造
 
+## 推奨コード整形ツール: Prettier
+
+本プロジェクトでは、コードの可読性・統一性向上のためにPrettierの利用を推奨します。
+
+### おすすめ設定例（.prettierrc）
+
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "arrowParens": "always"
+}
+```
+
+### 導入手順
+1. プロジェクトルートに `.prettierrc` ファイルを作成し、上記内容を貼り付けてください。
+2. VSCode拡張「Prettier」などを利用すると、保存時に自動整形が可能です。
+3. コマンドラインから一括整形する場合は `npx prettier --write .` を実行してください。
+
 ```
 typescript-nextjs-learning/
 │
