@@ -97,4 +97,39 @@ function move(vehicle: Car | Boat) {
   } else {
     vehicle.sail();
   }
-} 
+}
+
+// =============================
+// 型エイリアスの実践例
+// =============================
+
+// オブジェクト型の型エイリアス
+type UserAlias = {
+  name: string;
+  age: number;
+};
+const userAlias1: UserAlias = { name: 'Taro', age: 25 };
+
+// ユニオン型の型エイリアス
+type Id = string | number;
+let id: Id;
+id = 'abc';
+id = 123;
+
+// インターセクション型の型エイリアス
+// すでに上でCustomerとして定義済み
+const customer2: Customer = {
+  name: 'Suzuki',
+  credit: 2000,
+  email: 'suzuki@example.com',
+  phone: '000-0000-0000'
+};
+
+// 配列型の型エイリアス
+type FruitArray = string[];
+const fruits: FruitArray = ['apple', 'banana', 'cherry'];
+
+// 関数型の型エイリアス
+type GreetAlias = (name: string) => string;
+const greetAlias: GreetAlias = (name) => `Hello, ${name}`;
+console.log(greetAlias('TypeScript')); // Hello, TypeScript 

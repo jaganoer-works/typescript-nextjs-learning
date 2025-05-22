@@ -61,3 +61,18 @@ function move(vehicle) {
         vehicle.sail();
     }
 }
+const userAlias1 = { name: 'Taro', age: 25 };
+let id;
+id = 'abc';
+id = 123;
+// インターセクション型の型エイリアス
+// すでに上でCustomerとして定義済み
+const customer2 = {
+    name: 'Suzuki',
+    credit: 2000,
+    email: 'suzuki@example.com',
+    phone: '000-0000-0000'
+};
+const fruits = ['apple', 'banana', 'cherry'];
+const greetAlias = (name) => `Hello, ${name}`;
+console.log(greetAlias('TypeScript')); // Hello, TypeScript 
