@@ -1,68 +1,38 @@
 import React, { useState } from 'react';
-import Card from './components/Card';
-import List from './components/List';
-import Alert from './components/Alert';
-import DeleteButton from './components/DeleteButton';
-import MyButton from './components/MyButton';
-import Button from './components/Button';
+import StateEffectSample from './pages/StateEffectSample';
+import RefSample from './pages/RefSample';
+import CallbackSample from './pages/CallbackSample';
+import MemoSample from './pages/MemoSample';
+import CustomHookSample from './pages/CustomHookSample';
 import './App.css';
 
-const users = [
-  { id: 1, name: 'Taro' },
-  { id: 2, name: 'Jiro' },
-  { id: 3, name: 'Hanako' },
+const samples = [
+  { key: 'state', label: 'useState/useEffect', component: <StateEffectSample /> },
+  { key: 'ref', label: 'useRef', component: <RefSample /> },
+  { key: 'callback', label: 'useCallback', component: <CallbackSample /> },
+  { key: 'memo', label: 'useMemo', component: <MemoSample /> },
+  { key: 'custom', label: 'カスタムフック', component: <CustomHookSample /> },
 ];
 
 const App: React.FC = () => {
-  const [alert, setAlert] = useState<string | null>(null);
-  const [userList, setUserList] = useState(users);
-  const [count, setCount] = useState(0);
-
-  // ユーザー削除ハンドラ
-  const handleDelete = (id: number) => {
-    setUserList(prev => prev.filter(u => u.id !== id));
-    setAlert(`ユーザーID:${id} を削除しました`);
-  };
+  const [tab, setTab] = useState(samples[0].key);
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontFamily: 'sans-serif',
-      }}
-    >
-      <div style={{ maxWidth: 600, width: '100%' }}>
-        <h1>型付きコンポーネント サンプルページ</h1>
-
-        {/* Alertコンポーネントの例 */}
-        {alert && <Alert message={alert} type="success" />}
-
-        {/* Card + List + DeleteButton の例 */}
-        <Card title="ユーザー一覧">
-          <List
-            items={userList}
-            renderItem={(user) => (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span>{user.name}</span>
-                <DeleteButton id={user.id} onDelete={handleDelete} />
-              </div>
-            )}
-          />
-        </Card>
-
-        {/* MyButton（スプレッド属性）とButton（基本） */}
-        <div style={{ marginTop: 32 }}>
-          <MyButton label="通常ボタン" onClick={() => setAlert('MyButtonがクリックされました')} />
-          <MyButton label="無効ボタン" disabled style={{ marginLeft: 8 }} />
-        </div>
-        <div style={{ marginTop: 16 }}>
-          <Button label="カウントアップ" onClick={() => setCount(count + 1)} />
-          <span style={{ marginLeft: 12 }}>カウント: {count}</span>
-        </div>
+    <div>
+      <h1>React Hooks型付けサンプル集</h1>
+      <div>
+        {samples.map((s) => (
+          <button
+            key={s.key}
+            onClick={() => setTab(s.key)}
+            style={{ marginRight: 8 }}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
+      <div style={{ marginTop: 24 }}>
+        {samples.find((s) => s.key === tab)?.component}
       </div>
     </div>
   );
