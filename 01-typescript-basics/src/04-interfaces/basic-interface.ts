@@ -36,11 +36,17 @@ interface Person {
 
 interface Employee extends Person {
   employeeId: number;
+  age: number;
+  greet(): string;
 }
 
 const employee: Employee = {
   name: 'Sato',
-  employeeId: 1001
+  age: 28,
+  employeeId: 1001,
+  greet() {
+    return `こんにちは、${this.name}です。`;
+  }
 };
 
 // 配列の型として使う

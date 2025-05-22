@@ -12,7 +12,11 @@ const greeter = {
 };
 const employee = {
     name: 'Sato',
-    employeeId: 1001
+    age: 28,
+    employeeId: 1001,
+    greet() {
+        return `こんにちは、${this.name}です。`;
+    }
 };
 const arr = ['a', 'b', 'c'];
 const addNumbers = (a, b) => a + b;
