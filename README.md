@@ -45,6 +45,13 @@ PHP/Laravelバックエンド開発者からフルスタック開発者へのキ
   - getStaticProps/getStaticPaths
   - getServerSideProps
   - SWRによるクライアントサイドデータフェッチング
+  
+  > **App Routerでのデータ取得について**
+  > - App Routerでは`getStaticProps`/`getStaticPaths`/`getServerSideProps`は使わず、以下の方法でデータ取得・ページ生成を行う。
+  >   - 静的生成（SSG）：`generateStaticParams`とサーバーコンポーネントでの`fetch`
+  >   - サーバーサイドレンダリング（SSR）：`fetch`の`{ cache: 'no-store' }`
+  >   - ISR（Incremental Static Regeneration）：`fetch`の`{ next: { revalidate: 秒数 } }`
+  > - 詳細は[公式ドキュメント](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching)参照
 
 - **第3週 (7/14～7/20)**: API Routesとプロジェクト構造
   - APIエンドポイント作成
