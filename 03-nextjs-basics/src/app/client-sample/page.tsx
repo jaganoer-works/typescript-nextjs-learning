@@ -1,14 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ClientSample() {
-  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    fetch('/api/hello')
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
+
   return (
     <div>
       <h2>クライアントコンポーネント</h2>
-      <p>カウント: {count}</p>
-      <button onClick={() => setCount(count + 1)}>+1</button>
+      <p>メッセージ: {message}</p>
     </div>
   );
-} 
+}
