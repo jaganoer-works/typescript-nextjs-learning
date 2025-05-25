@@ -327,3 +327,111 @@ Atomic Designは、UIを「原子（Atom）」「分子（Molecule）」「有�
 ---
 
 今後、各部品の詳細設計やStorybookによるカタログ化もこの方針で進めてください。
+
+---
+
+## 7. 各UI部品の詳細設計
+
+### 7.1 Atoms（原子）
+
+#### Button
+- **用途**: 汎用ボタン
+- **Props例**:
+  ```ts
+  type ButtonProps = {
+    children: React.ReactNode;
+    onClick: () => void;
+    type?: 'button' | 'submit' | 'reset';
+    variant?: 'primary' | 'secondary' | 'danger';
+    disabled?: boolean;
+  }
+  ```
+- **振る舞い**: クリック時にonClickを発火。variantで色やスタイルを切り替え。
+
+#### Input
+- **用途**: テキスト入力欄
+- **Props例**:
+  ```ts
+  type InputProps = {
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    type?: string;
+    disabled?: boolean;
+  }
+  ```
+- **振る舞い**: 入力値変更時にonChangeを発火。
+
+#### StatusTag
+- **用途**: バッチ状態（成功/失敗/実行中など）の表示
+- **Props例**:
+  ```ts
+  type StatusTagProps = {
+    status: 'success' | 'failed' | 'running' | 'pending';
+  }
+  ```
+- **振る舞い**: statusに応じて色やアイコンを切り替え。
+
+---
+
+### 7.2 Molecules（分子）
+
+#### SearchBar
+- **用途**: 検索用の入力＋ボタン
+- **Props例**:
+  ```ts
+  type SearchBarProps = {
+    value: string;
+    onChange: (v: string) => void;
+    onSearch: () => void;
+    placeholder?: string;
+  }
+  ```
+- **振る舞い**: 入力値変更、Enterキーやボタン押下でonSearch発火。
+
+#### TableRow
+- **用途**: バッチ一覧テーブルの1行
+- **Props例**:
+  ```ts
+  type TableRowProps = {
+    batch: Batch;
+    onDetailClick: (id: string) => void;
+  }
+  ```
+- **振る舞い**: 詳細ボタン押下でonDetailClick発火。
+
+---
+
+### 7.3 Organisms（有機体）
+
+#### BatchTable
+- **用途**: バッチ一覧全体
+- **Props例**:
+  ```ts
+  type BatchTableProps = {
+    batches: Batch[];
+    onDetailClick: (id: string) => void;
+  }
+  ```
+- **振る舞い**: 各行でTableRowを利用し、バッチ一覧を表示。
+
+#### SummaryCards
+- **用途**: 成功数・失敗数・実行中数などのサマリー表示
+- **Props例**:
+  ```ts
+  type SummaryCardsProps = {
+    success: number;
+    failed: number;
+    running: number;
+  }
+  ```
+- **振る舞い**: 各数値をカード形式で表示。
+
+---
+
+### 7.4 Templates/Pages
+- Template/Pageは主にOrganismの配置とデータ流し込みを担当。PropsはOrganismのPropsをまとめたものになることが多いです。
+
+---
+
+今後、必要に応じて各部品のPropsや振る舞いの詳細を拡充してください。
