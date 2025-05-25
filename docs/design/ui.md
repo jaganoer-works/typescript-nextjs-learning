@@ -244,3 +244,86 @@
 ### 5.6 バリデーション・エラー表示
 - 入力フォーム下にエラーメッセージ表示
 - モーダル内でAPIエラー時はアラート表示
+
+---
+
+## 6. Atomic Designに基づくUI部品設計
+
+Atomic Designは、UIを「原子（Atom）」「分子（Molecule）」「有機体（Organism）」「テンプレート（Template）」「ページ（Page）」の5階層で設計する手法です。
+
+### 6.1 各階層の説明と例
+
+#### Atom（原子）
+- ボタン（Button）
+- テキストボックス（Input）
+- セレクトボックス（Select）
+- ラベル（Label）
+- アイコン（Icon）
+- タグ（StatusTag）
+
+#### Molecule（分子）
+- 検索バー（SearchBar：Input + Button）
+- ステータス表示（StatusLabel：Icon + Text）
+- 日付ピッカー（DateRangePicker：Input + Input）
+
+#### Organism（有機体）
+- バッチ一覧テーブル（BatchTable）
+- サマリーカード群（SummaryCards）
+- 実行履歴リスト（HistoryList）
+- 通知リスト（NotificationList）
+- フォーム（UserEditForm, BatchRunForm）
+
+#### Template（テンプレート）
+- ダッシュボードテンプレート（DashboardTemplate）
+- バッチ詳細テンプレート（BatchDetailTemplate）
+- ユーザー管理テンプレート（UserManagementTemplate）
+
+#### Page（ページ）
+- ダッシュボードページ（DashboardPage）
+- バッチ詳細ページ（BatchDetailPage）
+- ユーザー管理ページ（UserManagementPage）
+
+### 6.2 具体例：バッチ一覧テーブルの分解
+
+- **Atom**  
+  - Button（詳細ボタン）  
+  - StatusTag（状態表示）  
+  - TableCell（セル）  
+- **Molecule**  
+  - TableRow（1行分のバッチ情報）  
+- **Organism**  
+  - BatchTable（バッチ一覧全体）
+
+### 6.3 ディレクトリ構成例
+
+```
+/src
+  /components
+    /atoms
+      Button.tsx
+      Input.tsx
+      StatusTag.tsx
+      ...
+    /molecules
+      SearchBar.tsx
+      StatusLabel.tsx
+      TableRow.tsx
+      ...
+    /organisms
+      BatchTable.tsx
+      SummaryCards.tsx
+      HistoryList.tsx
+      ...
+    /templates
+      DashboardTemplate.tsx
+      BatchDetailTemplate.tsx
+      ...
+    /pages
+      DashboardPage.tsx
+      BatchDetailPage.tsx
+      ...
+```
+
+---
+
+今後、各部品の詳細設計やStorybookによるカタログ化もこの方針で進めてください。
