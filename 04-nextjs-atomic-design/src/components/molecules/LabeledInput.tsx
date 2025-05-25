@@ -12,7 +12,7 @@ type LabeledInputProps = {
 
 const LabeledInput: React.FC<LabeledInputProps> = ({ label, value, onChange, placeholder, id }) => {
   return (
-    <div>
+    <div className="mb-4">
       <Label htmlFor={id}>{label}</Label>
       <Input id={id} value={value} onChange={onChange} placeholder={placeholder} />
     </div>

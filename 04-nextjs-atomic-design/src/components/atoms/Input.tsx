@@ -15,8 +15,9 @@ const Input: React.FC<InputProps> = ({ value, onChange, placeholder, id }) => {
       onChange={onChange}
       placeholder={placeholder}
       id={id}
+      className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
     />
   );
 };
 
-export default Input; 
+export default Input;
