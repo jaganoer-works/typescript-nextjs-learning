@@ -53,7 +53,7 @@
 
 ## このリポジトリで達成したいこと
 
-- [ ] バッチ処理可視化ダッシュボードの要件定義・設計
+- [x] バッチ処理可視化ダッシュボードの要件定義・設計（詳細はdocs/requirements.md参照）
 - [ ] TypeScriptで型安全なAPI・モデル設計
 - [ ] Next.jsでAPIルート・ページ・動的ルーティング実装
 - [ ] Atomic DesignでUI部品を設計・Storybookでカタログ化
